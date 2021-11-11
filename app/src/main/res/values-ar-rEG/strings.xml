@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">IT460_002</string>
+    <string name="say_hi">قل مرحبا</string>
+    <string-array name="greetings">
+        <item>اهلا</item>
+        <item>مرحبا</item>
+        <item>تحياتي</item>
+    </string-array>
+</resources>
