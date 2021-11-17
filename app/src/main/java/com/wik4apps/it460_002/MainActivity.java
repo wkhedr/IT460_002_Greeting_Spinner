@@ -24,11 +24,13 @@ public class MainActivity extends AppCompatActivity  {
         et = findViewById(R.id.edit_text_name);
         tv = findViewById(R.id.textview_say_hi);
         sp = findViewById(R.id.spinner);
+        String[] s = getResources().getStringArray(R.array.greetings);
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d("MYTAG2020",String.valueOf(i));
-                //btn.setText();
+                Log.d("MYTAG2020",s[i]);
+                btn.setText(String.format("Say %s",s[i]));
             }
 
             @Override
