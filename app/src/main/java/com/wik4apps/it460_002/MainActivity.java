@@ -2,6 +2,7 @@ package com.wik4apps.it460_002;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,13 +25,13 @@ public class MainActivity extends AppCompatActivity  {
         et = findViewById(R.id.edit_text_name);
         tv = findViewById(R.id.textview_say_hi);
         sp = findViewById(R.id.spinner);
-        String[] s = getResources().getStringArray(R.array.greetings);
+        String[] greetings = getResources().getStringArray(R.array.greetings);
         sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d("MYTAG2020",String.valueOf(i));
-                Log.d("MYTAG2020",s[i]);
-                btn.setText(String.format("Say %s",s[i]));
+               btn.setText(String.format("****Say %s****",greetings[i]));
+                Log.e("MainActivity",greetings[i]);
+
             }
 
             @Override
@@ -42,22 +43,19 @@ public class MainActivity extends AppCompatActivity  {
         btn.setOnClickListener((view) -> {
             String name = et.getText().toString();
             String greeting = (String) sp.getSelectedItem();
-            tv.setText(String.format("%s   %s", greeting, name));
+
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.putExtra(Intent.EXTRA_SUBJECT,greeting);
+            intent.putExtra(Intent.EXTRA_TEXT,name);
+            intent.setType("text/plain");
+            startActivity(intent);
+            /*Intent intent = new Intent(this, SecondActivity.class);
+            intent.putExtra("NAME",name);
+            intent.putExtra("GR",greeting);
+            startActivity(intent);*/
+            //tv.setText(String.format("c%s   %s", greeting, name));
         });
 
     }
 
-    /*public void OnHi(View view) {
-        String name = et.getText().toString();
-        tv.setText("Hi "+name);
-        //Button n = (Button) view;
-
-
-    }*/
-
-    /*@Override
-    public void onClick(View view) {
-        String name = et.getText().toString();
-        tv.setText("Hi "+name);
-    }*/
 }
